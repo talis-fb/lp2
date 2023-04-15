@@ -13,11 +13,7 @@ class Aluno(
 
     val treinosPrint: String
         get() {
-            val horarios_str = StringJoiner(", ")
-            for (treino in treinos) {
-                horarios_str.add(treino.toString())
-            }
-            return String.format("{ %s }", horarios_str.toString())
+            return treinos.map { it.toString() }.joinToString(separator = ", ")
         }
 
     fun addTreino(treino: Horario) {

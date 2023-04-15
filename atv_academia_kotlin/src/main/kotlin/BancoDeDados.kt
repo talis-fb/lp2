@@ -14,51 +14,36 @@ class BancoDeDados {
     }
 
     fun imprimirFuncionarios() {
-        val linhas = ArrayList<String>()
-        for (funcionario in funcionarios) {
-            linhas.add(
-                String.format(
-                    " Matrícula: %s \t Nome: %s \t Tipo: %s",
-                    funcionario.matricula,
-                    funcionario.nome,
-                    funcionario.tipoFuncionario
-                )
-            )
+        val linhas = funcionarios.map {
+            "Matricula ${it.matricula} \t Nome: ${it.nome} \t Tipo: ${it.tipoFuncionario}"
         }
+
         println("####### Funcionários #######################")
-        for (content in linhas) {
-            println(content)
+        linhas.forEach {
+            println(it)
         }
         println("############################################")
     }
 
     fun imprimirProfessores() {
-        val professores = ArrayList<Professor>()
-        for (funcionario in funcionarios) {
-            if (funcionario is Professor) {
-                professores.add(funcionario)
-            }
-        }
+        val professores = funcionarios.filterIsInstance<Professor>()
+
         println("####### Professores ########################")
-        for (prof in professores) {
-            println(String.format(" Professor [%s]", prof.nome))
-            for (aluno in prof.getAlunos()) {
-                println(String.format(" Aluno >>> %s %s", aluno.nome, aluno.treinosPrint))
+        professores.forEach {
+            println(" Professor ${it.nome}")
+            it.getAlunos().forEach {
+                println(" Aluno >>> ${it.nome} ${it.treinosPrint}")
             }
         }
         println("############################################")
     }
 
     fun imprimirRecepcionistas() {
-        val recepcionista: ArrayList<Recepcionista> = ArrayList<Recepcionista>()
-        for (funcionario in funcionarios) {
-            if (funcionario is Recepcionista) {
-                recepcionista.add(funcionario as Recepcionista)
-            }
-        }
+        val recepcionista = funcionarios.filterIsInstance<Recepcionista>()
+
         println("####### Recepcionista ########################")
-        for (recep in recepcionista) {
-            println(java.lang.String.format(" Nome : [%s] %s", recep.nome, recep.horariosPrint))
+        recepcionista.forEach {
+            println(" Nome : [${it.nome}] ${it.horariosPrint}")
         }
         println("############################################")
     }

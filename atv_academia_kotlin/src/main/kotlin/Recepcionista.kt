@@ -23,6 +23,6 @@ class Recepcionista(matricula: String?, nome: String?) : Funcionario(matricula, 
             for (horario in horarios) {
                 horarios_str.add(horario.toString())
             }
-            return String.format("{ %s }", horarios_str.toString())
+            return "{ ${ horarios_str.toString() } }"
         }
 }
