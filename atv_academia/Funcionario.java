@@ -15,6 +15,10 @@ public class Funcionario {
         return nome;
     }
 
+    public String getTipoFuncionario(){
+        return "imd.academia.Funcionario";
+    }
+
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }

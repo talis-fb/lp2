@@ -16,6 +16,10 @@ public class Professor extends Funcionario {
         this.alunos = new HashSet<Aluno>();
     }
 
+    public String getTipoFuncionario(){
+        return String.format("imd.academia.Professor [%s]", this.tipo.toString());
+    }
+
     public void addAluno(Aluno aluno) {
         this.alunos.add(aluno);
     }

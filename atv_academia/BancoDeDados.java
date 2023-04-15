@@ -21,10 +21,10 @@ public class BancoDeDados {
         for (Funcionario funcionario : this.funcionarios) {
             linhas.add(
                     String.format(
-                            " Matrícula: %s Nome: %s Tipo: %s",
+                            " Matrícula: %s \t Nome: %s \t Tipo: %s",
                             funcionario.getMatricula(),
                             funcionario.getNome(),
-                            funcionario
+                            funcionario.getTipoFuncionario()
                     )
             );
         }
@@ -51,6 +51,21 @@ public class BancoDeDados {
             for (Aluno aluno : prof.getAlunos()) {
                 System.out.println(String.format(" Aluno >>> %s %s", aluno.getNome(), aluno.getTreinosPrint()));
             }
+        }
+        System.out.println("############################################");
+    }
+
+    public void imprimirRecepcionistas() {
+        ArrayList<Recepcionista> recepcionista = new ArrayList<>();
+        for (Funcionario funcionario : this.funcionarios) {
+            if (funcionario instanceof Recepcionista){
+                recepcionista.add((Recepcionista) funcionario);
+            }
+        }
+
+        System.out.println("####### Recepcionista ########################");
+        for (Recepcionista recep : recepcionista) {
+            System.out.println(String.format(" Nome : [%s] %s", recep.getNome(), recep.getHorariosPrint()));
         }
         System.out.println("############################################");
     }

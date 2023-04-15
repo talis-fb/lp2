@@ -3,7 +3,12 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
         Recepcionista recep1 = new Recepcionista("001", "Jessica");
+        recep1.addHorario(new Horario(new Date(2023, 4, 15, 12, 30, 0), "Terça"));
+        recep1.addHorario(new Horario(new Date(2023, 4, 15, 12, 30, 0), "Quarta"));
+
         Recepcionista recep2 = new Recepcionista("001", "Amanda");
+        recep2.addHorario(new Horario(new Date(2023, 4, 15, 12, 30, 0), "Sexta"));
+        recep2.addHorario(new Horario(new Date(2023, 4, 15, 12, 30, 0), "Quarta"));
 
         Professor prof1 = new Professor("003", "Snape", TipoProfessor.MUSCULAÇÃO);
         Professor prof2 = new Professor("004", "Dumbledore", TipoProfessor.NATAÇÃO);
@@ -38,15 +43,18 @@ public class Main {
         prof2.addAluno(aluno5);
 
 
-        BancoDeDados db = new BancoDeDados();
-        db.addFuncionarios(recep1);
-        db.addFuncionarios(recep2);
-        db.addFuncionarios(prof1);
-        db.addFuncionarios(prof2);
+        NatalFitness academia = new NatalFitness(new BancoDeDados());
+
+        academia.addFuncionario(recep1);
+        academia.addFuncionario(recep2);
+        academia.addFuncionario(prof1);
+        academia.addFuncionario(prof2);
 
         // Output
-        db.imprimirFuncionarios();
+        academia.imprimirFuncionarios();
         System.out.println("\n");
-        db.imprimirProfessores();
+        academia.imprimirProfessores();
+        System.out.println("\n");
+        academia.imprimirRecepcionistas();
     }
 }
