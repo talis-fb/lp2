@@ -10,11 +10,8 @@ class Repositorio {
     }
 
     fun alugarVeiculo(placa: String) {
-        for (v in veiculos) {
-            if (v.placa === placa) {
-                v.isAlugado = true
-            }
-        }
+        val veiculo = veiculos.find { it.placa === placa }
+        veiculo?.isAlugado = true
     }
 
     fun imprimirMarcasMaisRelevantes() {
@@ -39,67 +36,39 @@ class Repositorio {
 
     fun imprimirVeiculos() {
         println("== Lista de veiculos ==")
-        val i = 1
-        for (veiculo in veiculos) {
-            println(
-                java.lang.String.format(
-                    "%s | %s | %s | %s | %s;",
-                    veiculo.tipo,
-                    veiculo.placa,
-                    veiculo.marca,
-                    veiculo.isAlugado,
-                    veiculo.quilometragem
-                )
-            )
+        veiculos.forEach {
+            println("${it.tipo} | ${it.placa} | ${it.marca} | ${it.isAlugado} | ${it.quilometragem};")
         }
     }
 
     fun imprimirCarrosDisponiveis() {
-        val disponives = ArrayList<Veiculo>()
-        var aluguelAlto = 0
-        var aluguelBaixo = 0
         println("== Veiculos disponiveis para alugar ==")
-        for (v in veiculos) {
-            if (!v.isAlugado) {
-                if (v.aluguel > aluguelAlto || aluguelAlto == 0) {
-                    aluguelAlto = v.aluguel
-                }
-                if (v.aluguel < aluguelBaixo || aluguelBaixo == 0) {
-                    aluguelBaixo = v.aluguel
-                }
-                println(
-                    String.format(
-                        "%s | %s | %s => %d",
-                        v.tipo,
-                        v.placa,
-                        v.marca,
-                        v.aluguel
-                    )
-                )
-            }
+
+        val veiculos_disponives = veiculos.filter { !it.isAlugado }
+
+        val alugueis = veiculos_disponives.asSequence().map { it.aluguel }
+        val aluguelAlto = alugueis.max()
+        val aluguelBaixo = alugueis.min()
+
+        veiculos_disponives.forEach {
+            println("${it.tipo} | ${it.placa} | ${it.marca} => ${it.aluguel}")
         }
-        println(String.format("Aluguel mais alto: %d", aluguelAlto))
-        println(String.format("Aluguel mais baixo: %d", aluguelBaixo))
+
+        println("Aluguel mais alto: $aluguelAlto")
+        println("Aluguel mais baixo: $aluguelBaixo")
     }
 
     fun imprimirCarrosAlugados() {
-        val alugados = ArrayList<Veiculo>()
         var valor_total = 0
         println("== Veiculos alugados ==")
-        for (v in veiculos) {
-            if (v.isAlugado) {
-                valor_total += v.aluguel
-                println(
-                    String.format(
-                        "%s | %s | %s => %d",
-                        v.tipo,
-                        v.placa,
-                        v.marca,
-                        v.aluguel
-                    )
-                )
+
+        veiculos
+            .filter { it.isAlugado }
+            .forEach {
+                valor_total += it.aluguel
+                println("${it.tipo} | ${it.placa} | ${it.marca} => ${it.aluguel}")
             }
-        }
+
         println("Valor total a receber...")
         println(valor_total)
     }
