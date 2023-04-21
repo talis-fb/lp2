@@ -15,23 +15,10 @@ class Repositorio {
     }
 
     fun imprimirMarcasMaisRelevantes() {
-        val marcas_ocorrencias = HashMap<String?, Int>()
-        for (v in veiculos) {
-            if (v !is Carro) {
-                continue
-            }
-            var ocorencias: Int? = 0
-            if (marcas_ocorrencias.containsKey(v.marca)) {
-                ocorencias = marcas_ocorrencias[v.marca]
-            }
-            marcas_ocorrencias[v.marca] = ocorencias!! + 1
-        }
-        val marcas: Set<String?> = marcas_ocorrencias.keys
-        println("Marcas dos carros")
-        val i = 1
-        for (m in marcas) {
-            println(String.format("%d) %s", i, m))
-        }
+        val marcas = veiculos.map { it.marca }
+        val counts = marcas.groupingBy { it }.eachCount()
+        val sortedList = marcas.toSet().sortedByDescending { counts[it] }
+        sortedList.forEachIndexed { index, m -> println("${index + 1} ) $m") }
     }
 
     fun imprimirVeiculos() {
