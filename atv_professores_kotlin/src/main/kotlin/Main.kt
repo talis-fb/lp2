@@ -103,13 +103,13 @@ fun main(args: Array<String>) {
 
     println(" -- Professor com uma mercedes na garagem --")
     val rico = escola.professorMaiorSalario
-    println(String.format("%s | %s | %s, R$ %s", rico?.nome, rico?.matricula, rico?.disciplina, rico?.salario))
+    println("${rico?.nome} | ${rico?.matricula} | ${rico?.disciplina}, R$ ${rico?.salario}")
 
     println(" -- Professor com mais estrada aqui --")
     val anciao = escola.professorMaiorAntigo
-    println(String.format("%s | %s | %s, R$ %s", anciao?.nome, anciao?.matricula, anciao?.disciplina, anciao?.salario))
+    println("${anciao?.nome} | ${anciao?.matricula} | ${anciao?.disciplina}, R$ ${anciao?.salario}")
 
     println(" -- Professor com mais espilhas na cara --")
     val jovem = escola.professorMaisJovem
-    println(String.format("%s | %s | %s, R$ %s", jovem?.nome, jovem?.matricula, jovem?.disciplina, jovem?.salario))
+    println("${jovem?.nome} | ${jovem?.matricula} | ${jovem?.disciplina}, R$ ${jovem?.salario}")
 }
