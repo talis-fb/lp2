@@ -2,6 +2,9 @@ import java.util.ArrayList;
 
 public class Repo {
     protected ArrayList<Animal> animais;
+    public Repo(ArrayList<Animal> animais){
+        this.animais = animais;
+    }
 
     public void addAnimal(Animal animal) {
         this.animais.add(animal);
