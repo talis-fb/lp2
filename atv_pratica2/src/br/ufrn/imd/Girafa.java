@@ -1,3 +1,5 @@
+package br.ufrn.imd;
+
 import java.util.Date;
 
 public class Girafa extends Animal {

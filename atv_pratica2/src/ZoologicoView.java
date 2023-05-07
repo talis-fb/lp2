@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class ZoologicoView {
     protected Repo repo;
     public ZoologicoView(Repo repo) {

@@ -1,3 +1,8 @@
+import br.ufrn.imd.Animal;
+import br.ufrn.imd.Elefante;
+import br.ufrn.imd.Girafa;
+import br.ufrn.imd.Tigre;
+
 import java.util.ArrayList;
 
 public class Repo {
